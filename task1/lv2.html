@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <input type="text">
+    <script>
+        const text = document.querySelector("textarea");
+        // var text1,text2;
+        // setInterval(() => {
+        //      text1 = text.value;
+        // }, 1000);
+        // setTimeout(() => {
+        //     setInterval(() => {
+        //          text2 = text.value;
+        //     }, 1000);
+        // }, 2000);
+        // if (text1 === text2) {
+        //     console.log(text.value);
+        // }
+
+        // 输入框内容连续2s不发生变化就在控制台打印出内容
+        function angle() {
+            console.log(text.value);
+        }
+        function debounce(fn, time) {
+            let timer;
+            return function () {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    fn();
+                }, time);
+            }
+        }
+        text.addEventListener("input", debounce(angle, 2000));
+    </script>
+</body>
+
+</html>

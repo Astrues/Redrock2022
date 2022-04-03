@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function sum(a, b, c) {
+            return a + b + c;
+        };
+
+        const curry = function(fn, ...args) {
+            if (args.length >= fn.length) { 
+                return fn(...args);
+            } else {
+                return (..._args) => curry(fn, ...args, ..._args);
+            }
+        }
+        let curriedSum = curry(sum);
+
+        alert(curriedSum(1, 2, 3)); // 6，仍然可以被正常调用
+        alert(curriedSum(1)(2, 3)); // 6，对第一个参数的柯里化
+        alert(curriedSum(1)(2)(3)); // 6，全柯里化
+
+        //写一个curry函数来实现此功能
+        // function add() {
+        //     let args = Array.prototype.slice.call(arguments); //转化为数组
+        //     let inner = function() {
+        //         args.push(...arguments);
+        //         return inner;
+        //     }
+        //     inner.toString = function() {
+        //         return args.reduce(function(prev, cur) {
+        //             return prev + cur;
+        //         })
+        //     }
+        //     return inner;
+        // }
+        // const result = add(1)(2, 3)(4);
+        // console.log(result);
+        // alert(result);
+    </script>
+</body>
+
+</html>
