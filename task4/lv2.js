@@ -1,3 +1,3 @@
 module.exports = function (text) {
-    return text.replace("redrock", "Redrock")
+    return text.replace("redrock", "Redrock");
 }
